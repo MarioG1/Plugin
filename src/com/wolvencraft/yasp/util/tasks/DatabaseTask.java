@@ -95,7 +95,7 @@ public class DatabaseTask implements Runnable {
         }
         
         for(OfflineSession session : OfflineSessionCache.getSessions()) {
-            Message.debug("Saving offline player data: " +session.getName()+ " ID: " +session.getId());
+            Message.debug("Saving offline player data: " +session.getName()+ " ID: " +session.getId()); //TEst
             session.getPlayerTotals().fetchData();
         }
         
