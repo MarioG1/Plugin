@@ -27,6 +27,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 import com.wolvencraft.yasp.session.OnlineSession;
+import com.wolvencraft.yasp.util.Message;
 
 /**
  * Common interface for all data stores
@@ -70,10 +71,11 @@ public abstract class DataStore<N extends NormalData, D extends DetailedData> {
      * If an entry was not synchronized, it will not be removed.
      */
     public void pushData() {
+        Message.debug("Saving NormalData: "+ this.type);
         for(N entry : getNormalData()) {
             if(((NormalData) entry).pushData(session.getId())) normalData.remove(entry);
         }
-        
+        Message.debug("Saving DetailedData: "+ this.type);
         for(D entry : getDetailedData()) {
             if(((DetailedData) entry).pushData(session.getId())) detailedData.remove(entry);
         }
