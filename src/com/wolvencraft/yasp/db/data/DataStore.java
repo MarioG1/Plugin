@@ -73,10 +73,12 @@ public abstract class DataStore<N extends NormalData, D extends DetailedData> {
     public void pushData() {
         Message.debug("Saving NormalData: "+ this.type);
         for(N entry : getNormalData()) {
+            Message.debug("Saving NormalData: "+ ((NormalData) entry));
             if(((NormalData) entry).pushData(session.getId())) normalData.remove(entry);
         }
         Message.debug("Saving DetailedData: "+ this.type);
         for(D entry : getDetailedData()) {
+            Message.debug("Saving NormalData: "+ ((DetailedData) entry));
             if(((DetailedData) entry).pushData(session.getId())) detailedData.remove(entry);
         }
     }
