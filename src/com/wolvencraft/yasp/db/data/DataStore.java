@@ -71,15 +71,21 @@ public abstract class DataStore<N extends NormalData, D extends DetailedData> {
      * If an entry was not synchronized, it will not be removed.
      */
     public void pushData() {
-        Message.debug("Saving NormalData: "+ this.type);
         for(N entry : getNormalData()) {
-            Message.debug("Saving NormalData: "+ ((NormalData) entry));
-            if(((NormalData) entry).pushData(session.getId())) normalData.remove(entry);
-        }
-        Message.debug("Saving DetailedData: "+ this.type);
+           try{
+                 if(((NormalData) entry).pushData(session.getId())) normalData.remove(entry);
+           } catch(NullPointerException e ){
+                 normalData.remove(entry);
+                 Message.debug("NPE occurred while saving: "+ ((NormalData) entry));
+           }
+        }   
         for(D entry : getDetailedData()) {
-            Message.debug("Saving NormalData: "+ ((DetailedData) entry));
-            if(((DetailedData) entry).pushData(session.getId())) detailedData.remove(entry);
+            try{
+                 if(((DetailedData) entry).pushData(session.getId())) detailedData.remove(entry);
+            } catch(NullPointerException e ){
+                 detailedData.remove(entry);
+                 Message.debug("NPE occurred while saving: "+ ((DetailedData) entry));
+            }
         }
     }
     
