@@ -66,8 +66,7 @@ public class ItemListener implements Listener {
     public void onItemPickup(PlayerPickupItemEvent event) {
         Player player = event.getPlayer();
         if(!HandlerManager.playerLookup(player, StatPerms.ItemPickUp)) return;
-        
-        HandlerManager.runAsyncTask(new ItemPickup(player, player.getLocation(), event.getItem().getItemStack()));
+        HandlerManager.runAsyncTask(new ItemPickup(player, player.getLocation(), event.getItem().getItemStack(), event.getItem().getItemStack().getAmount()));
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

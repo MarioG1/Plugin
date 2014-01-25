@@ -81,8 +81,7 @@ public class ItemData extends DataStore<TotalItemStats, DetailedData> {
      * @param location Location of the event
      * @param itemStack Stack of items in question
      */
-    public void itemPickUp(Location location, ItemStack itemStack) {
-        int amount = itemStack.getAmount();
+    public void itemPickUp(Location location, ItemStack itemStack, int amount) {
         getNormalData(itemStack).addPickedUp(amount);
         for(int i = 0; i < amount; i++) {
             ItemPickupEntry detailedEntry = new ItemPickupEntry(location, itemStack);
