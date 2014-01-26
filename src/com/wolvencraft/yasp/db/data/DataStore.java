@@ -75,7 +75,7 @@ public abstract class DataStore<N extends NormalData, D extends DetailedData> {
            try{
                  if(((NormalData) entry).pushData(session.getId())) normalData.remove(entry);
            } catch(NullPointerException e ){
-                 Message.debug("NPE occurred while saving: "+ ((NormalData) entry));
+                 Message.debug("NPE occurred while saving NormalData: "+ ((NormalData) entry));
                  normalData.remove(entry);
            }
         }   
@@ -83,7 +83,7 @@ public abstract class DataStore<N extends NormalData, D extends DetailedData> {
             try{
                  if(((DetailedData) entry).pushData(session.getId())) detailedData.remove(entry);
             } catch(NullPointerException e ){
-                 Message.debug("NPE occurred while saving: "+ ((DetailedData) entry));
+                 Message.debug("NPE occurred while saving DetailedData: "+ ((DetailedData) entry));
                  detailedData.remove(entry);
             }
         }
